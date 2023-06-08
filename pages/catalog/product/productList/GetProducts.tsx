@@ -1,22 +1,19 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProductListAction } from '../../../../store/actions/catalog/productActions';
-import { RootState } from '../../../../store';
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../store";
+import { useEffect } from "react";
+import { fetchProductList } from "../../../../store/reducers/catalog/productSlice";
 
 export default function GetProducts() {
 
     const router = useRouter();
 
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
-    const products = useSelector((state: RootState) => {
-        return state.getProductListReducer.data;
-    });
+    const products = useSelector((state: RootState) => state.product.productList);
 
     useEffect(() => {
-        dispatch(getProductListAction() as any);
+        dispatch(fetchProductList());
     }, [dispatch]);
 
     const handleButtonClick = (id: any) => {
