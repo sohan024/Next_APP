@@ -1,26 +1,11 @@
-// import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-// import thunk from "redux-thunk";
-// import { getProductListReducer, getProductReducer } from "./reducers/catalog/productReducers";
-
-// const reducer = combineReducers({
-//   getProductListReducer: getProductListReducer,
-//   getProductReducer: getProductReducer
-// });
-
-// export type RootState = ReturnType<typeof store.getState>;
-
-// const composeEnhancer = compose;
-
-// const store = createStore(reducer, composeEnhancer(applyMiddleware(thunk)));
-
-// export default store;
-
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import productReducer from './reducers/catalog/productSlice';
+import categoryReducer from './reducers/catalog/categorySlice';
 
 const store = configureStore({
   reducer: {
     product: productReducer,
+    category: categoryReducer,
   },
 });
 
